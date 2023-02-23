@@ -424,6 +424,8 @@ class SimpleT5:
         if use_gpu:
             if torch.cuda.is_available():
                 self.device = torch.device("cuda")
+            elif torch.backends.mps.is_available():
+                self.device = torch.device("mps")
             else:
                 raise "exception ---> no gpu found. set use_gpu=False, to use CPU"
         else:
